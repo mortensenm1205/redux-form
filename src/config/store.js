@@ -6,7 +6,7 @@ import { combineReducers } from 'redux';
 import { inputs } from '../components/Inputs/reducers';
 import { display } from '../components/Display/reducers';
 
-export const rReducer = combineReducers({
+const rReducer = combineReducers({
     inputs,
     display
 })
