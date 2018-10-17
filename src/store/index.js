@@ -7,7 +7,10 @@ import { rReducer } from '../reducers';
 const persistConfig = {
     key: 'root',
     storage,
-    stateReconciler: autoMergeLevel2
+    stateReconciler: autoMergeLevel2,
+    blacklist: [
+        'inputs'
+    ]
 }
 
 const pReudcer = persistReducer(persistConfig, rReducer);

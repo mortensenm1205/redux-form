@@ -8,7 +8,7 @@ import App from './App';
 render(
     <Provider store={store}>
         <PersistGate persistor={persistor}>
-            <App />
+            <App store={store}/>
         </PersistGate>
     </Provider>, 
     document.getElementById('root'));

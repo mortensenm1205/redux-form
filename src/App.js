@@ -25,7 +25,7 @@ class App extends Component {
   }
 
   render() {
-    const { display } = this.props;
+    const { display, store } = this.props;
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
@@ -43,6 +43,7 @@ class App extends Component {
             )
           })}
         </section>
+        {console.log(store.getState())}
       </div>
     );
   }
