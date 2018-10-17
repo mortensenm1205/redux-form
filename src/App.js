@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Inputs from './components/Inputs';
+import Display from './components/Display';
 import { connect } from 'react-redux';
 import { inputs, display, remove } from './actions';
 
@@ -30,16 +31,7 @@ class App extends Component {
     return (
       <div>
         <Inputs submit={this.handleSubmit} change={this.handleChange} />
-        <section>
-          {display.map((value, index) => {
-            return (
-              <div key={index} onClick={() => this.handleRemove(index)}>
-                <h3>{value.input}</h3>
-                <h3>{value.second_input}</h3>
-              </div>
-            )
-          })}
-        </section>
+        <Display display={display} remove={this.handleRemove} />
         {console.log(store.getState())}
       </div>
     );
