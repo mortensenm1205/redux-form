@@ -16,8 +16,11 @@ class App extends Component {
   }
 
   handleSubmit = e => {
+    const { input, second_input } = e.target;
     const { inputs, getDisplay } = this.props;
     e.preventDefault();
+    input.value = "";
+    second_input.value = "";
     getDisplay(inputs);
   }
 
