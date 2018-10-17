@@ -1,33 +1,55 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { inputs } from './actions';
 
 class App extends Component {
+
   state = {
-    localInputs: {}
+    displayInputs: []
   }
 
   handleChange = e => {
     const { name, value } = e.target;
-    const { localInputs } = this.state;
-    this.setState({
-      localInputs: { ...localInputs, [name]: value }
-    })
+    const { getInputs } = this.props;
+    getInputs(name, value);
   }
 
   handleSubmit = e => {
-    const { localInputs } = this.state;
+    const { inputs } = this.props;
+    const { displayInputs } = this.state;
     e.preventDefault();
-    console.log(localInputs);
+    this.setState({
+      displayInputs: displayInputs.concat(inputs)
+    })
   }
 
   render() {
+    const { displayInputs } = this.state;
     return (
-      <form onSubmit={this.handleSubmit}>
-        <input type="text" name="input" onChange={this.handleChange} />
-        <input type="text" name="second_input" onChange={this.handleChange} />
-        <button>Add Value</button>
-      </form>
+      <div>
+        <form onSubmit={this.handleSubmit}>
+          <input type="text" name="input" onChange={this.handleChange} />
+          <input type="text" name="second_input" onChange={this.handleChange} />
+          <button>Add Value</button>
+        </form>
+        <section>
+          {console.log(displayInputs)}
+        </section>
+      </div>
     );
   }
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    inputs: state.inputs 
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    getInputs: (n, v) => dispatch(inputs(n, v))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
