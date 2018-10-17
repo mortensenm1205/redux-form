@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Inputs from './components/Inputs';
 import { connect } from 'react-redux';
 import { inputs, display, remove } from './actions';
 
@@ -28,11 +29,7 @@ class App extends Component {
     const { display, store } = this.props;
     return (
       <div>
-        <form onSubmit={this.handleSubmit}>
-          <input type="text" name="input" onChange={this.handleChange} />
-          <input type="text" name="second_input" onChange={this.handleChange} />
-          <button>Add Value</button>
-        </form>
+        <Inputs submit={this.handleSubmit} change={this.handleChange} />
         <section>
           {display.map((value, index) => {
             return (
