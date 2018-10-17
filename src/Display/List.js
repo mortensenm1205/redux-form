@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Display = ({ display, remove }) => {
+const DisplayList = ({ display, remove }) => {
     return (
         <div>
             {display.map((value, index) => {
@@ -15,4 +15,4 @@ const Display = ({ display, remove }) => {
     )
 }
 
-export default Display;
+export default DisplayList;
