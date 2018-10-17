@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import Inputs from './Inputs/Form';
-import { inputs } from './Inputs/actions';
-import Display from './Display/List';
-import { display, remove } from './Display/actions';
+import Inputs from './components/Inputs/Form';
+import { inputs } from './components/Inputs/actions';
+import Display from './components/Display/List';
+import { display, remove } from './components/Display/actions';
 import { connect } from 'react-redux';
 
 class App extends Component {
