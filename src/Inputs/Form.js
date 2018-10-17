@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Inputs = ({ submit, change }) => {
+const InputsForm = ({ submit, change }) => {
     return (
         <form onSubmit={submit}>
             <input type="text" name="input" onChange={change} />
@@ -10,4 +10,4 @@ const Inputs = ({ submit, change }) => {
     );
 }
 
-export default Inputs;
+export default InputsForm;
