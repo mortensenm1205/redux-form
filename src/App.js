@@ -1,12 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { inputs } from './actions';
+import { inputs, display, remove } from './actions';
 
 class App extends Component {
-
-  state = {
-    displayInputs: []
-  }
 
   handleChange = e => {
     const { name, value } = e.target;
@@ -14,17 +10,19 @@ class App extends Component {
     getInputs(name, value);
   }
 
+  handleRemove = index => {
+    const { removeDisplay } = this.props;
+    removeDisplay(index);
+  }
+
   handleSubmit = e => {
-    const { inputs } = this.props;
-    const { displayInputs } = this.state;
+    const { inputs, getDisplay } = this.props;
     e.preventDefault();
-    this.setState({
-      displayInputs: displayInputs.concat(inputs)
-    })
+    getDisplay(inputs);
   }
 
   render() {
-    const { displayInputs } = this.state;
+    const { display } = this.props;
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
@@ -33,7 +31,14 @@ class App extends Component {
           <button>Add Value</button>
         </form>
         <section>
-          {console.log(displayInputs)}
+          {display.map((value, index) => {
+            return (
+              <div key={index} onClick={() => this.handleRemove(index)}>
+                <h3>{value.input}</h3>
+                <h3>{value.second_input}</h3>
+              </div>
+            )
+          })}
         </section>
       </div>
     );
@@ -42,13 +47,16 @@ class App extends Component {
 
 const mapStateToProps = state => {
   return {
-    inputs: state.inputs 
+    inputs: state.inputs,
+    display: state.display
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    getInputs: (n, v) => dispatch(inputs(n, v))
+    getInputs: (n, v) => dispatch(inputs(n, v)),
+    getDisplay: obj => dispatch(display(obj)),
+    removeDisplay: index => dispatch(remove(index))
   }
 }
 
