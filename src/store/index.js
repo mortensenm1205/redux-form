@@ -2,7 +2,14 @@ import { createStore } from 'redux';
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import autoMergeLevel2 from 'redux-persist/lib/stateReconciler/autoMergeLevel2';
-import { rReducer } from '../reducers';
+import { combineReducers } from 'redux';
+import { inputs } from '../Inputs/reducers';
+import { display } from '../Display/reducers';
+
+export const rReducer = combineReducers({
+    inputs,
+    display
+})
 
 const persistConfig = {
     key: 'root',
